@@ -6,10 +6,16 @@ import json
 import chess.engine
 from stockfish import Stockfish
 import re
+import urllib
+
+url = 'https://github.com/anirudhvsp/Chess-Mate/blob/master/stockfish.exe?raw=true' 
+
+filename = 'download.exe'  
+urllib.urlretrieve(url, filename)
 
 app = Flask(__name__)
-stockfish= Stockfish("https://github.com/anirudhvsp/Chess-Mate/blob/master/stockfish.exe?raw=true")
-engine1 = chess.engine.SimpleEngine.popen_uci("https://github.com/anirudhvsp/Chess-Mate/blob/master/stockfish.exe?raw=true")
+stockfish= Stockfish("download.exe")
+engine1 = chess.engine.SimpleEngine.popen_uci("download.exe")
 stockfish.set_skill_level(0)
 
 @app.route('/')
